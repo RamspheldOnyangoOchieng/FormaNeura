@@ -1,0 +1,7 @@
+Flask
+Flask-Mail
+Twilio
+supabase
+requests
+python-dotenv
+gunicorn

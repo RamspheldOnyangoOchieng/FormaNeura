@@ -1,0 +1,8 @@
+.env
+venv/
+set_up.bat
+*.pyc
+*.pyo
+*.pyd
+.env.*
+__pycache__/
