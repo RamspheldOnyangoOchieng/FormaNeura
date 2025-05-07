@@ -1,6 +1,6 @@
 from flask import Flask
 from .routes import main
-from .whatsapp.handler import handle_whatsapp_message
+from .WhatsApp.handler import handle_whatsapp_message
 from .email.notifier import send_email
 from .db.supabase_client import insert_form_data
 
