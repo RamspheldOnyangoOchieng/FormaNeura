@@ -1,7 +1,7 @@
 import google.generativeai as genai
 from flask import current_app
 
-genai.configure(api_key=current_app.config['GEMINI_API_KEY'])
+genai.configure(api_key=Config.GEMINI_API_KEY)
 
 def generate_form(form_id):
     try:
