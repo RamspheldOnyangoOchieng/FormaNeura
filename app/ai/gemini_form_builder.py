@@ -1,7 +1,7 @@
 import google.generativeai as genai
-from flask import current_app
+from config import Config  # ✅ Import your custom config class
 
-genai.configure(api_key=Config.GEMINI_API_KEY)
+genai.configure(api_key=Config.GEMINI_API_KEY)  # ✅ Use static config value
 
 def generate_form(form_id):
     try:
@@ -18,10 +18,10 @@ def generate_form(form_id):
 
         response = model.generate_content(prompt)
 
-        if not response or not response.text:
+        if not response or not hasattr(response, "text") or not response.text:
             raise Exception("Empty response from Gemini")
 
-        return response.text  # This is the HTML structure
+        return response.text
 
     except Exception as e:
         print(f"[Gemini Form Builder Error] Failed to generate form for ID {form_id}: {e}")
