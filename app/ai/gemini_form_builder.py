@@ -5,7 +5,7 @@ genai.configure(api_key=current_app.config['GEMINI_API_KEY'])
 
 def generate_form(form_id):
     try:
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 
         prompt = f"""
         Generate an HTML form for a support ticket with the following fields:
