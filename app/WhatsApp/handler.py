@@ -1,7 +1,7 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from app.ai.gemini_form_builder import generate_form
 from app.db.supabase_client import store_form_request
-from app.utils.helpers import generate_random_id
+from utils.helpers import generate_random_id
 
 def handle_whatsapp_message():
     message = request.form.get('Body').lower()
