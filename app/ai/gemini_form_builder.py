@@ -25,6 +25,6 @@ def generate_form(form_id):
 
     except Exception as e:
         print(f"[Gemini Form Builder Error] Failed to generate form for ID {form_id}: {e}")
-        raise Exception("Failed to generate form from Gemini.")
+        raise Exception(f"Failed to generate form from Gemini: {str(e)}")
 
     return None
