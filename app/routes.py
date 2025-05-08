@@ -3,6 +3,8 @@ from app.WhatsApp.handler import handle_whatsapp_message
 from app.ai.gemini_form_builder import generate_form
 from app.db.supabase_client import insert_form_data, get_form_by_id
 from app.email.notifier import send_email
+from flask import Blueprint
+
 
 main = Blueprint('main', __name__)
 
@@ -25,3 +27,7 @@ def success():
 @main.route('/whatsapp', methods=['POST'])
 def handle_whatsapp():
     return handle_whatsapp_message()
+
+@main.route("/status", methods=["POST"])
+def status():
+    return "OK", 200
