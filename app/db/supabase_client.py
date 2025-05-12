@@ -3,6 +3,11 @@
 import supabase
 from flask import current_app
 import traceback
+import logging
+import traceback
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def get_client():
     """
@@ -38,19 +43,20 @@ def store_form_request(user, form_link):
     """
     try:
         client = get_client()
-        payload = {"username": user, "form_link": form_link}  # changed 'user' to 'username'
-        print(f"[Supabase Store Request] Payload: {payload}")
+        payload = {"username": user, "form_link": form_link}
+        logger.info(f"[Supabase Store Request] Payload: {payload}")
+        
         response = client.table('form_requests').insert(payload).execute()
-        print(f"[Supabase Store Request Response] {response}")
+        logger.info(f"[Supabase Store Request Response] {response}")
         
-        if response.data:
+        if not response.data:
             raise ValueError(f"No data returned from Supabase: {response}")
-        return response
         
-    except Exception:
-        print(f"[Supabase Store Request Error] Payload: {payload}\n{traceback.format_exc()}")
-        raise
+        return response
 
+    except Exception:
+        logger.error(f"[Supabase Store Request Error] Payload: {payload}\n{traceback.format_exc()}")
+        raise
 
 def get_form_by_id(form_id):
     """
