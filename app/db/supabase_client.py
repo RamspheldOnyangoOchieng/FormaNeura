@@ -42,9 +42,11 @@ def store_form_request(user, form_link):
         print(f"[Supabase Store Request] Payload: {payload}")
         response = client.table('form_requests').insert(payload).execute()
         print(f"[Supabase Store Request Response] {response}")
-        if response.get("status_code") not in [200, 201]:
-            raise ValueError(f"Unexpected response from Supabase: {response}")
+        
+        if response.data:
+            raise ValueError(f"No data returned from Supabase: {response}")
         return response
+        
     except Exception:
         print(f"[Supabase Store Request Error] Payload: {payload}\n{traceback.format_exc()}")
         raise
